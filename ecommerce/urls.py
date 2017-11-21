@@ -19,5 +19,6 @@ from products.views import get_index, all_products
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^$", all_products),
+    url(r"^$", all_products, name="products"),
+    
 ]
