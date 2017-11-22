@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            padding-top: 100px;
+        }
+    </style>
     {% block head_js %}
     {% endblock head_js %}
 </head>
@@ -30,14 +35,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                        <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     {%  else %}
-                        <li><a href="#"><i class="fa fa-user-plus"></i> Register</a></li>
-                        <li><a href="#"><i class="fa fa-sign-in"></i> Log In</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fa fa-user-plus"></i> Register</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
                     {% endif %}
                     <li>
-                        <a href="{% url "view_cart" %}">
+                        <a href="{% url 'view_cart' %}">
                             <i class="fa fa-shopping-cart"></i> Cart 
                             {% if product_count > 0 %}
                             <label class="badge badge-warning">{{ product_count }}</label>
@@ -49,7 +54,7 @@
         </div>
     </nav>
     <div class="container">
-        <form action="#" method="get">
+        <form action="{% url 'search' %}" method="get">
             <input type="text" name="q">
             <button type="submit">Search</button>
         </form>
